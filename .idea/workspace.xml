@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="612b4ee4-4a52-47ed-9807-1403e4eb5a35" name="Changes" comment="main cleaned up">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/pluralsight/courseinfo/cli/service/CourseRetrievalService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/pluralsight/courseinfo/cli/service/PluralsightCourse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/pluralsight/courseinfo/cli/CourseRetriever.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pluralsight/courseinfo/cli/CourseRetriever.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pluralsight/courseinfo/cli/service/CourseRetrievalService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pluralsight/courseinfo/cli/service/CourseRetrievalService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +20,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Record" />
       </list>
     </option>
   </component>
@@ -96,7 +99,7 @@
       <option name="presentableId" value="Default" />
       <updated>1713172008714</updated>
       <workItem from="1713172009887" duration="3049000" />
-      <workItem from="1713178908223" duration="7566000" />
+      <workItem from="1713178908223" duration="10722000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
