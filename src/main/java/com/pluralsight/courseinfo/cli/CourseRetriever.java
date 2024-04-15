@@ -7,21 +7,20 @@ public class CourseRetriever {
     private static final Logger LOG = LoggerFactory.getLogger(CourseRetriever.class);
 
     public static void main(String[] args) {
-        System.out.println("CourseRetriever started!");
+        LOG.info("CourseRetriever starting...");
         if (args.length == 0) {
-            System.out.println("Please, provide an author name as first argument.");
+            LOG.warn("Please, provide an author name as first argument.");
             return; // terminate the program here
         }
 
         try {
             retrieveCourses(args[0]);
         } catch (Exception e) {
-            System.out.println("Unexpected error");
-            e.printStackTrace();
+            LOG.error("Unexpected error", e);
         }
     }
 
     private static void retrieveCourses(String authorId) {
-        System.out.println("Retrieving courses for author " + authorId);
+        LOG.info("Retrieving courses for author '{}'", authorId);
     }
 }
