@@ -8,14 +8,20 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 class CourseJdbcRepository implements CourseRepository {
     private static final String H2_DATABASE_URL =
             "jdbc:h2:file:%s;AUTO_SERVER=TRUE;INIT=RUNSCRIPT FROM './db_init.sql'";
 
     private static final String INSERT_COURSE = """
-                MERGE INTO Courses (id, name, length, url)
-                VALUES (?, ?, ?, ?)
+            MERGE INTO Courses (id, name, length, url)
+            VALUES (?, ?, ?, ?)
+            """;
+
+    private static final String ADD_NOTES = """
+            UPDATE Courses SET notes = ?
+            WHERE id = ?
             """;
 
     private final DataSource dataSource;
@@ -52,13 +58,26 @@ class CourseJdbcRepository implements CourseRepository {
                         rs.getString(1),
                         rs.getString(2),
                         rs.getLong(3),
-                        rs.getString(4)
+                        rs.getString(4),
+                        Optional.ofNullable(rs.getString(5))
                 );
                 courses.add(course);
             }
             return Collections.unmodifiableList(courses);
         } catch(SQLException e) {
             throw new RespositoryException("Failed to retrieve courses.", e);
+        }
+    }
+
+    @Override
+    public void addNotes(String id, String notes) {
+        try (Connection con = dataSource.getConnection()) {
+            PreparedStatement statement = con.prepareStatement(ADD_NOTES);
+            statement.setString(1, notes);
+            statement.setString(2, id);
+            statement.execute();
+        } catch(SQLException e) {
+            throw new RespositoryException("Failed to add notes to " + id, e);
         }
     }
 }
