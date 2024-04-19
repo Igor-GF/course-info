@@ -33,11 +33,11 @@ public class CourseServer {
     }
 
     private static String loadDatabaseFileName() {
-        try (InputStream propertiesStream = CourseServer.class.getResourceAsStream("./server.properties")) {
+        try (InputStream propertiesStream = CourseServer.class.getResourceAsStream("/server.properties")) {
             Properties properties = new Properties();
             properties.load(propertiesStream);
             return properties.getProperty("course-info.database");
-        } catch(IOException e) {
+        } catch (IOException e) {
             throw new IllegalStateException("Could not load database filename");
         }
     }

@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Comparator;
 import java.util.stream.Stream;
 
-@Path("/courses")
+@Path("courses")
 public class CourseResource {
     private static final Logger LOG = LoggerFactory.getLogger(CourseResource.class);
 

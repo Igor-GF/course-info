@@ -19,10 +19,12 @@
               <goal>shade</goal>
             </goals>
             <configuration>
-              <transformer>
-                <main-Class>com.pluralsight.courseinfo.server.CourseServer</main-Class>
-              </transformer>
-              <transformer />
+              <transformers>
+                <transformer>
+                  <mainClass>com.pluralsight.courseinfo.server.CourseServer</mainClass>
+                </transformer>
+                <transformer />
+              </transformers>
             </configuration>
           </execution>
         </executions>
