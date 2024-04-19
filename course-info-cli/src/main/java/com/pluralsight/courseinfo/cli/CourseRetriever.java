@@ -9,14 +9,16 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
+import static java.util.function.Predicate.not;
+
 public class CourseRetriever {
     private static final Logger LOG = LoggerFactory.getLogger(CourseRetriever.class);
 
-    public static void main(String[] args) {
+    public static void main(String... args) {
         LOG.info("CourseRetriever starting...");
         if (args.length == 0) {
-            LOG.warn("Please, provide an author name as first argument.");
-            return; // terminate the program here
+            LOG.warn("Please provide an author name as first argument.");
+            return;
         }
 
         try {
@@ -34,10 +36,10 @@ public class CourseRetriever {
 
         List<PluralsightCourse> coursesToStore = courseRetrievalService.getCoursesFor(authorId)
                 .stream()
-                .filter(c -> !c.isRetired())
+                .filter(not(PluralsightCourse::isRetired))
                 .toList();
-        LOG.info("Retrieved {} courses {}", coursesToStore.size(), coursesToStore);
+        LOG.info("Retrieved the following {} courses {}", coursesToStore.size(), coursesToStore);
         courseStorageService.storePluralsightCourses(coursesToStore);
-        LOG.info("Courses succesfully stored.");
+        LOG.info("Courses successfully stored");
     }
 }

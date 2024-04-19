@@ -12,9 +12,9 @@ import java.net.http.HttpResponse;
 import java.util.List;
 
 public class CourseRetrievalService {
-    // placeholder for the author name %s
+    // Fallback in case Pluralsight API does not work (beware, this will only ever retrieve courses for sander-mak):
+    // private static final String PS_URI = "https://raw.githubusercontent.com/sandermak-ps/course-info-java-17/master/sander-mak.json";
     private static final String PS_URI = "https://app.pluralsight.com/profile/data/author/%s/all-content";
-
     private static final HttpClient CLIENT = HttpClient
             .newBuilder()
             .followRedirects(HttpClient.Redirect.ALWAYS)
@@ -30,12 +30,11 @@ public class CourseRetrievalService {
 
         try {
             HttpResponse<String> response = CLIENT.send(request, HttpResponse.BodyHandlers.ofString());
-            return switch (response.statusCode()) {
+            return switch(response.statusCode()) {
                 case 200 -> toPluralsightCourses(response);
                 case 404 -> List.of();
-                default -> throw new RuntimeException("Pluralsight API call failed with status coda " + response.statusCode());
+                default -> throw new RuntimeException("Pluralsight API call failed with status code " + response.statusCode());
             };
-
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException("Could not call Pluralsight API", e);
         }
